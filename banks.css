@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#container {
+  font-size: 0;
+  width: 550px;
+}
+#container img {
+  margin-right: 1px;
+}
+.frame {
+  padding-left: 126px;
+  padding-top: 135px;
+  padding-right: 126px;
+  background: url(dims.png) no-repeat;
+}
+h1 {
+  display: block;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+}
+.slidecontainer {
+  margin: 5px;
+}
