@@ -16,6 +16,15 @@ var rangeValuew = function(elemw, targetw) {
   };
 };
 elemw.addEventListener("input", rangeValuew(elemw, targetw));
+// slider
+var elems = document.getElementById("ranges");
+var targets = document.getElementById("values");
+var rangeValues = function(elems, targets) {
+  return function(evt) {
+    targets.innerHTML = elems.value;
+  };
+};
+elems.addEventListener("input", rangeValuew(elems, targets));
 
 // shredder
 var cs = document.getElementById("myCanvas");
@@ -25,6 +34,7 @@ var ctx2 = cs2.getContext("2d");
 // size
 var x = 0;
 var sp = 10;
+var speed = 1;
 var N = 1;
 var canvas_size_w = 364;
 var canvas_size_h = 527;
@@ -53,6 +63,7 @@ function rend() {
     canvas_size_w,
     canvas_size_h
   );
+
   /* frame */
   ctx2.clearRect(0, canvas_size_h, cs2.width, cs2.height);
 
@@ -115,6 +126,13 @@ function submitForm() {
   x = 0;
   N = document.getElementById("range").value / 100;
   sp = document.getElementById("rangew").value;
-  refreshIntervalId = setInterval(rend, 50);
+  speed = document.getElementById("ranges").value;
+  try {
+    setTimeout(function() {
+      refreshIntervalId = setInterval(rend, 100 / speed);
+    }, 500);
+  } catch (e) {
+    clearInterval(refreshIntervalId);
+  }
 }
 sub.addEventListener("click", submitForm, false);
