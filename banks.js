@@ -55,18 +55,33 @@ function rend() {
   );
   /* frame */
   ctx2.clearRect(0, canvas_size_h, cs2.width, cs2.height);
-  for (var j = 0; j * sp < canvas_size_w; j++) {
+
+  var num_lines = cs.width / sp;
+  var line_width_in_src = image.width / num_lines;
+
+  for (var j = 0; (j + 1) * line_width_in_src < image.width; j++) {
     ctx2.drawImage(
       image,
-      j * sp * (image.width / canvas_size_w),
-      image.height - x + bottom_margin,
-      sp,
-      x,
-      j * sp + j,
-      canvas_size_h + bottom_margin,
-      sp,
-      x * (canvas_size_h / image.height)
+      j * line_width_in_src, // sx
+      0, // sy
+      line_width_in_src, // sWidth
+      image.height, // sHeight
+      j * sp + j, // dx
+      canvas_size_h + bottom_margin, // dy
+      sp, // dWidth
+      x * (canvas_size_h / image.height) // dHeight
     );
+    // ctx2.drawImage(
+    //   image,
+    //   j * sp * (image.width / canvas_size_w),
+    //   image.height - x + bottom_margin,
+    //   sp,
+    //   x,
+    //   j * sp + j,
+    //   canvas_size_h + bottom_margin,
+    //   sp,
+    //   x * (canvas_size_h / image.height)
+    // );
   }
   /* output */
   imageData = ctx2.getImageData(0, 0, cs2.width, cs2.height);
