@@ -71,7 +71,7 @@ function rend() {
       j * sp * (image.width / canvas_size_w),
       image.height - x + bottom_margin,
       sp,
-      x,
+      x + Number.EPSILON, // workaround for Firefox issue
       j * sp + j,
       canvas_size_h + bottom_margin,
       sp,
